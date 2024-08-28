@@ -25,6 +25,7 @@ public class TowerController : MonoBehaviour
     [SerializeField] float remainTime; // 다음 총알을 쏠 때 까지 기다린 시간
     [SerializeField] GameObject bulletPrefab; // 생성할 총알의 원본, 프리팹
 
+
     private void Update()
     {
         // 다음 총알의 생성까지 남은 시간을 계속 차감한다.
@@ -45,4 +46,10 @@ public class TowerController : MonoBehaviour
             remainTime = bulletTime;
         }
     }
+
+
+    [SerializeField] bool isAttacking; // 공격기능의 동작 여부
+
+    public void StartAttack() { isAttacking = true; }
+    public void StopAttack() { isAttacking = false; }
 }

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 // 컴포넌트 : 게임 오브젝트의 기능을 담당하는 부품
 public class PlayerController : MonoBehaviour
@@ -8,6 +10,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Rigidbody rigid;
     [SerializeField] float moveSpeed;
 
+    //플레이어가 죽었을 때 사용할 이벤트 함수
+    public event Action OnDied;
+
+
     // 유니티 메시지 함수들을 각각의 역할에 맞게 채워넣으며, 기능에 대해서 구현한다.
     // 멤버변수 : 동작
     private void Update()
@@ -16,6 +22,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // ====================================================================================
+
 
     // 움직이는 기능을 가진 Move 함수
     void Move()
@@ -37,12 +44,13 @@ public class PlayerController : MonoBehaviour
 
         // 리지드바디 : 물리 엔진 담당의 컴포넌트.
         // AddForce, velocity, angularVelocity
-        rigid.velocity = new Vector3(x * moveSpeed, 0, z * moveSpeed);
+        rigid.velocity = moveDir * moveSpeed;
     }
 
     // 플레이어가 총알에 맞았을 때 사용할 함수
     public void TakeHit()
     {
+        OnDied?.Invoke();
         Destroy(gameObject);
     }
 }

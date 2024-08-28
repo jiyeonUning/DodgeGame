@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
         // 총알의 속도 = 앞방향 X 회전속도 으로 설정해준다.
         rigid.velocity = transform.forward * speed;
     }
+
     public void SetTarget(Transform target)
     {
         this.target = target;
