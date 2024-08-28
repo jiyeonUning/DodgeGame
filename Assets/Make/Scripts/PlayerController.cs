@@ -39,4 +39,10 @@ public class PlayerController : MonoBehaviour
         // AddForce, velocity, angularVelocity
         rigid.velocity = new Vector3(x * moveSpeed, 0, z * moveSpeed);
     }
+
+    // 플레이어가 총알에 맞았을 때 사용할 함수
+    public void TakeHit()
+    {
+        Destroy(gameObject);
+    }
 }
